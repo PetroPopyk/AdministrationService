@@ -1,0 +1,19 @@
+<div ng-show="classStatus" class="classroomBlock">
+    <input type="button" value="Закрити вікно" ng-click="closeClass()"><br><br>
+    <h1>Клас № {{className}}</h1>
+    <table border="1" align="center">
+        <tr>
+            <th>Ім'я учня</th>
+            <th>Прізвище учня</th>
+            <th>Редагувати</th>
+            <th>Видалити</th>
+        </tr>
+        <tr ng-repeat="a in classroom track by $index">
+            <td>{{a.name}}</td>
+            <td>{{a.sname}}</td>
+            <td><input type="button" value="Редагувати" ng-click="editClassroom(a.id,a.name,a.teacher)"></td>
+            <td><input type="button" value="Видалити" ng-click="deleteClassroom(a.id)"></td>
+        </tr>
+    </table>
+
+</div>

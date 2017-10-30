@@ -1,0 +1,23 @@
+<div ng-show="teachersStatus">
+    <h1 style="color:#FB667A">Список вчителів</h1>
+    <table class="container">
+        <tr>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th ng-show='moderateOnly'>Редагувати</th>
+            <th ng-show='adminOnly'>Видалити</th>
+        </tr>
+        <tr ng-repeat="a in teachers track by $index">
+            <td>{{a.name}}</td>
+            <td>{{a.sname}}</td>
+            <td ng-show='adminOnly'>
+                <input type="button" value="Видалити" ng-click="deleteTeacher(a.id)"> </td>
+            <td ng-show='moderateOnly'>
+                <input type="button" value="Редагувати" ng-click="editTeacher(a.id,a.name,a.sname)"> </td>
+        </tr>
+    </table>
+    <input type="button" value="Додати стовпчик" ng-click="addColumnTeachers()" ng-show='adminOnly'>
+    <input type="button" value="Додати вчителя" ng-click="addTeachers()" ng-show='adminOnly'>
+    <input type="button" value="Закрити вікно" ng-click="closeTeachers()">
+    <br>
+    <br>

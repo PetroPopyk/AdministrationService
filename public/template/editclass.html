@@ -1,0 +1,8 @@
+<form name="editClassForm" novalidate>
+    <input type="text" name="editNameClass" ng-model="editNameClass" required> <span style="color:red" ng-show="editClassForm.editNameClass.$touched && editClassForm.editNameClass.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="editClassForm.editNameClass.$error.required">Пусте поле</span> </span>
+    <select id="teachersSelect">
+        <option ng-repeat="a in teachers track by $index" value="{{a.id}}">{{a.name}} {{a.sname}}</option>
+    </select><br>
+    <input type="button" ng-click="editClasses()" value="Редагувати клас" ng-disabled="editClassForm.$invalid"> </form>

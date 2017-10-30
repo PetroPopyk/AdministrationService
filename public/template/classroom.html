@@ -1,0 +1,30 @@
+<div>
+    <div ng-show="classroomStatus">
+        <h1 style="color:#FB667A">Список класів</h1>
+        <table class="container">
+            <tr>
+                <th>Назва класу</th>
+                <th>Ім'я кл.керівника</th>
+                <th>Прізвище кл.керівника</th>
+                <th ng-show='adminOnly'>Редагувати</th>
+                <th>Перейти до класу</th>
+                <th ng-show='adminOnly'>Видалити</th>
+            </tr>
+            <tr ng-repeat="a in classroom track by $index">
+                <td>{{a.class}}</td>
+                <td>{{a.name}}</td>
+                <td>{{a.sname}}</td>
+                <td ng-show='adminOnly'>
+                    <input type="button" value="Редагувати" ng-click="editClassroom(a.id,a.class,a.name,a.sname, a.teach_id)"> </td>
+                <td >
+                    <input type="button" value="Перейти" ng-click="gotoClassroom(a.id, a.class)"> </td>
+                <td ng-show='adminOnly'>
+                    <input type="button" value="Видалити" ng-click="deleteClassroom(a.id)"> </td>
+            </tr>
+        </table>
+        <input type="button" value="Додати клас" ng-click="addNewClassroom()" ng-show='adminOnly'>
+        <input type="button" value="Закрити вікно" ng-click="closeClassroom()">
+        <br>
+        <br> </div>
+    <pupils-block></pupils-block>
+</div>

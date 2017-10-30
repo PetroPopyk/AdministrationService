@@ -1,0 +1,17 @@
+<form name="addPupilForm" ng-show="addPupilStatus" novalidate>
+    <input type="text" name="namePupil" ng-model="namePupil" placeholder="Ім'я учня" required>
+
+
+    <span style="color:red" ng-show="addPupilForm.namePupil.$touched && addPupilForm.namePupil.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="addPupilForm.namePupil.$error.required">Пусте поле</span>
+    </span>
+
+    <br><input type="text" name="snamePupil" placeholder="Прізвище учня" ng-model="snamePupil" required>
+
+    <span style="color:red" ng-show="addPupilForm.snamePupil.$touched && addPupilForm.snamePupil.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="addPupilForm.snamePupil.$error.required">Пусте поле</span>
+    </span>
+    <br><input type="button" ng-click="addPupils()" ng-disabled="addPupilForm.$invalid" value="Додати учня">
+</form>

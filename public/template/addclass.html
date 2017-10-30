@@ -1,0 +1,13 @@
+<form name="addClassForm" novalidate>
+    <input type="text" name="addNameClass" ng-model="addNameClass" required>
+
+    <span style="color:red" ng-show="addClassForm.addNameClass.$touched && addClassForm.addNameClass.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="addClassForm.addNameClass.$error.required">Пусте поле</span>
+    </span><br>
+
+    <select id="teachersSelect">
+<option ng-repeat="a in teachers track by $index" value="{{a.id}}">{{a.name}} {{a.sname}}</option>
+</select><br>
+    <input type="button" ng-click="addClasses()" value="Додати клас" ng-disabled="addClassForm.$invalid">
+</form>

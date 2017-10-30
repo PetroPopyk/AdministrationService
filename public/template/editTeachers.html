@@ -1,0 +1,15 @@
+ <form name="editTeacherForm" novalidate ng-show="editTeachStatus">
+        <input type="text" name="editNameTeacher" ng-model="editNameTeacher" required><br>
+
+        <span style="color:red" ng-show="editTeacherForm.editNameTeacher.$touched && editTeacherForm.editNameTeacher.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="editTeacherForm.editNameTeacher.$error.required">Пусте поле</span>
+        </span>
+<br>
+        <input type="text" name="editSnameTeacher" ng-model="editSnameTeacher" required><br>
+        <span style="color:red" ng-show="editTeacherForm.editSnameTeacher.$touched && editTeacherForm.editSnameTeacher.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="editTeacherForm.editSnameTeacher.$error.required">Пусте поле</span>
+        </span><br>
+        <input type="button" ng-click="editTeach()" value="Редагувати вчителя" ng-disabled="editTeacherForm.$invalid">
+    </form>

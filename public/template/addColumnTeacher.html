@@ -1,0 +1,11 @@
+<form name="addColumnTeacherForm" novalidate>
+        <input type="text" name="addNameColumn" ng-model="addNameColumn" required>
+
+        <span style="color:red" ng-show="addColumnTeacherForm.addNameColumn.$touched && addColumnTeacherForm.addNameColumn.$invalid">
+<!--                перевірка на пусте поле   -->
+                    <span ng-show="addColumnTeacherForm.addNameColumn.$error.required">Пусте поле</span>
+        </span>
+
+
+        <input type="button" ng-click="addColumn()" value="Додати" ng-disabled="addColumnTeacherForm.$invalid">
+    </form>
