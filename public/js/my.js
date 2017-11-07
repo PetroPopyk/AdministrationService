@@ -45,8 +45,28 @@ app.directive('naviBlock', function () {
                 }
                 //Приховати класи
             $scope.closeClassroom = function () {
-                    $scope.classroomStatus = false;
+                $scope.classroomStatus = false;
+            }
+            $scope.closePupils = function () {
+                    $scope.pupilsStatus = false;
                 }
+            //Gradients
+              var granimInstance = new Granim({
+            element: '#canvas-basic'
+            , name: 'basic-gradient'
+            , direction: 'left-right'
+            , opacity: [1, 1]
+            , isPausedWhenNotInView: true
+            , states: {
+                "default-state": {
+                    gradients: [
+                ['#45145A', '#FF5300']
+              , ['#ED1C24', '#FBB03B']
+
+            ]
+                }
+            }
+        });
                 //Отримати юзерів
             $http.get('http://localhost:8000/AdministrationUsers').then(function successCallback(response) {
                 $scope.AdmUsers = response.data;
@@ -93,6 +113,7 @@ app.directive('naviBlock', function () {
                 $scope.teachersStatus = false;
                 $scope.classroomStatus = false;
                 $scope.pupilsStatus = false;
+                $scope.moderateOnly = false;
             }
         }
     }
@@ -203,16 +224,30 @@ app.directive('teachersBlock', function () {
                             });
                         }
                     }
-                })
+                }).closePromise.then(function (res) {
+                    $http.get('http://localhost:8000/teachers').then(function successCallback(response) {
+                        $scope.teachers = response.data;
+                    }, function errorCallback(response) {
+                        console.log("Error!!!" + response.err);
+                    });
+                });
             };
             //Видалити вчителя
             $scope.deleteTeacher = function (index) {
                 //Підтвердження видалення
-                var r = confirm("Ви впевнені, що бажаєте видалити вчителя?");
-                if (r == true) {
-                    let teacherObj = {
-                        id: index
-                    };
+                let teacherObj = {
+                    id: index
+                };
+                swal({
+                    title: 'Ви впевнені?'
+                    , text: "Видалити вчителя?"
+                    , type: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, delete it!'
+                }).then(function () {
+                    swal('Видалено!', 'Вчителя видалено із списку.', 'success');
                     //Надсилаєм дані на видалення вчителя
                     $http.post('http://localhost:8000/del-teach', teacherObj).then(function successCallback(response) {
                         //Повторно генеруєм список вчителів
@@ -230,7 +265,7 @@ app.directive('teachersBlock', function () {
                     }, function errorCallback(response) {
                         console.log("Error!!!" + response.err);
                     });
-                }
+                })
             }
         }
     }
@@ -347,11 +382,19 @@ app.directive('classroomBlock', function () {
                 //Видаляємо клас
             $scope.deleteClassroom = function (index) {
                 //Підтвердження видалення
-                var r = confirm("Ви впевнені, що бажаєте видалити клас?");
-                if (r == true) {
-                    let classObj = {
-                        id: index
-                    };
+                let classObj = {
+                    id: index
+                };
+                swal({
+                    title: 'Ви впевнені?'
+                    , text: "Видалити клас?"
+                    , type: 'warning'
+                    , showCancelButton: true
+                    , confirmButtonColor: '#3085d6'
+                    , cancelButtonColor: '#d33'
+                    , confirmButtonText: 'Yes, delete it!'
+                }).then(function () {
+                    swal('Видалено!', 'Клас видалено із списку.', 'success');
                     //Надсилаєм дані на видалення вчителя
                     $http.post('http://localhost:8000/del-class', classObj).then(function successCallback(response) {
                         //Повторно генеруєм список класів
@@ -363,7 +406,7 @@ app.directive('classroomBlock', function () {
                     }, function errorCallback(response) {
                         console.log("Error!!!" + response.err);
                     });
-                }
+                })
             }
         }
     }

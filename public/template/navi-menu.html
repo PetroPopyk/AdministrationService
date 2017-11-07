@@ -1,17 +1,21 @@
 <div class="menu">
     <div class="menu-block">
-        <h1>Загальноосвітня школа</h1>
+        <h1 class="neon" data-text='ADMINISRATION'>ADMINISTRATION</h1>
         <p ng-show='loginedUser' id='logined'>asd</p><span ng-show='loginedUser' ng-click='logOut()' id='logOut'>Вийти</span>
         <div class="loginBlock">
             <div class="login-block" ng-show='authorizationStatus'>
-                <h2>Увійдіть, будь ласка:</h2>
-                <input type="text" value="" placeholder="Username" id="username" ng-model='login'/>
-                <input type="password" value="" placeholder="Password" id="password" ng-model='pass'/><br><br>
+                <h2>Login:</h2>
+                <input type="text" value="" placeholder="Username" id="username" ng-model='login' />
+                <input type="password" value="" placeholder="Password" id="password" ng-model='pass' />
+                <br>
+                <br>
                 <button ng-click='authorization()'>Увійти</button>
             </div>
             <br>
-            <div class="adminLock"  ng-show='loginStatus'>
-            <input type="button" ng-click="teachersStart()" value="Вчителі">
-            <input type="button" ng-click="classroomStart()" value="Класи">
-            <input type="button" ng-click="searchPupil()" value="Пошук учня"></div> </div>
+            <div class="adminLock" ng-show='loginStatus'>
+                <input type="button" ng-click="teachersStart()" value="Вчителі">
+                <input type="button" ng-click="classroomStart()" value="Класи">
+                <input type="button" ng-click="searchPupil()" value="Пошук учня">
+            </div>
+        </div>
     </div>

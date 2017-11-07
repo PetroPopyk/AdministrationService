@@ -1,12 +1,15 @@
+/*@import url('https://fonts.googleapis.com/css?family=Quicksand');*/
 .block {
-    background-color: #1F2739;
+    /*    background-color: #1F2739;*/
     text-align: center;
+    margin-top: 100px;
 }
 
 .menu {
     display: flex;
     width: 100%;
     justify-content: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .menu-block input {
@@ -58,20 +61,49 @@ input[type=button]:hover {
 @charset "UTF-8";
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 body {
-    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     line-height: 1.42em;
-    color: #A7A1AE;
-    background-color: #1F2739;
+    color: aliceblue;
+    /*    background-color: #1F2739;*/
     box-sizing: border-box;
 }
 
-h1 {
-    font-size: 3em;
-    font-weight: 300;
+.neon {
+    position: absolute;
+    margin: 0 auto;
+    margin-top: 15px;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 4em;
+    font-weight: 100;
     line-height: 1em;
-    text-align: center;
-    color: #4DC3FA;
+    color: #fff;
+    font-family: monospace;
+    text-shadow: 0 0 20px black;
+    /*    #4DC3FA*/
+}
+
+.neon:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: black;
+    filter: blur(15px);
+}
+
+.neon:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: grey;
+    z-index: -2;
+    filter: blur(40px);
 }
 
 .container td {
@@ -89,6 +121,7 @@ h1 {
     margin: 0 auto;
     display: table;
     padding: 0 0 25px 0;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .container td,
@@ -165,7 +198,7 @@ input[type=button]:disabled:hover {
     font-size: 14px;
     padding: 0 0 0 50px;
     outline: none;
-    border: 1px solid yellow;
+    border: 1px solid black;
     margin-top: 15px;
 }
 
@@ -191,7 +224,7 @@ input[type=button]:disabled:hover {
 
 .login-block input:active,
 .login-block input:focus {
-    border: 1px solid #ff656c;
+    border: 1px solid red;
 }
 
 .login-block button {
@@ -215,15 +248,32 @@ input[type=button]:disabled:hover {
 #logInfo {
     font-size: 17px;
     font-weight: bold;
-    color: #ff656c;
+    color: black;
 }
 
 #logOut {
     font-size: 16px;
-    font-weight: 300;
-    color: red;
+    font-weight: bold;
+    color: #800000;
     cursor: pointer;
 }
-#logOut:hover{
-    text-decoration: underline red;
+
+#logOut:hover {
+    text-decoration: underline #800000;
+}
+
+#canvas-basic {
+    position: fixed;
+    display: block;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+h2{
+    color: black;
+    text-shadow: 1px 1px 50px white;
 }

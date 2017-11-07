@@ -4,21 +4,21 @@
         <tr>
             <th>Ім'я учня</th>
             <th>Прізвище учня</th>
-            <th>Редагувати</th>
-            <th>Видалити</th>
+            <th ng-show='moderateOnly'>Редагувати</th>
+            <th ng-show='adminOnly'>Видалити</th>
         </tr>
         <tr ng-repeat="a in pupils track by $index">
             <td>{{a.name}}</td>
             <td>{{a.sname}}</td>
-            <td>
-                <input type="button" value="Редагувати" ng-click="editPupils()">
+            <td ng-show='moderateOnly'>
+                <input type="button" value="Редагувати" ng-click="editPupils()" >
             </td>
-            <td>
-                <input type="button" value="Видалити" ng-click="deletePupils()">
+            <td ng-show='adminOnly'>
+                <input type="button" value="Видалити" ng-click="deletePupils()" >
             </td>
         </tr>
     </table>
-    <input type="button" value="Добавити учня" ng-click="addNewPupil()">
+    <input type="button" value="Добавити учня" ng-click="addNewPupil()" ng-show='moderateOnly'>
     <input type="button" value="Закрити вікно" ng-click="closePupils()">
     <input type="button" value="Повернутись до класів" ng-click="gotoClassroomBack()">
     <br>
