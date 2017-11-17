@@ -27,6 +27,7 @@ app.directive('naviBlock', function () {
             $scope.loginedUser = false;
             $scope.adminOnly = false;
             $scope.moderateOnly = false;
+            $scope.searchStatus = false;
             //Показати вчителів
             $scope.teachersStart = function () {
                     $scope.teachersStatus = true;
@@ -50,24 +51,33 @@ app.directive('naviBlock', function () {
             $scope.closePupils = function () {
                     $scope.pupilsStatus = false;
                 }
-            //Gradients
-              var granimInstance = new Granim({
-            element: '#canvas-basic'
-            , name: 'basic-gradient'
-            , direction: 'left-right'
-            , opacity: [1, 1]
-            , isPausedWhenNotInView: true
-            , states: {
-                "default-state": {
-                    gradients: [
+                //Показати пошук учнів
+            $scope.searchPupil = function () {
+                    $scope.searchStatus = true;
+                    $scope.teachersStatus = false;
+                    $scope.classroomStatus = false;
+                    $scope.pupilsStatus = false;
+                }
+                //Gradients
+            var granimInstance = new Granim({
+                element: '#canvas-basic'
+                , name: 'basic-gradient'
+                , direction: 'left-right'
+                , opacity: [1, 1]
+                , isPausedWhenNotInView: true
+                , states: {
+                    "default-state": {
+                        gradients: [
                 ['#45145A', '#FF5300']
               , ['#ED1C24', '#FBB03B']
 
             ]
+                    }
                 }
-            }
-        });
-                //Отримати юзерів
+            });
+            //Button animation
+
+            //Отримати юзерів
             $http.get('http://localhost:8000/AdministrationUsers').then(function successCallback(response) {
                 $scope.AdmUsers = response.data;
                 console.log($scope.AdmUsers);
@@ -458,6 +468,29 @@ app.directive('pupilsBlock', function () {
                         });
                     });
             };
+        }
+    }
+});
+//Директива пошуку учня за іменем
+app.directive('search-block', function () {
+    return {
+        replace: true
+        , templateUrl: 'template/search.html'
+        , controller: function ($scope, $http, ngDialog) {
+            //знайти учня за іменем
+            $scope.searchStudent = function () {
+                if ($scope.searchName != '') {
+                    let searchObj = {
+                        name: $scope.searchName
+                    }
+                    $http.post('http://localhost:8000/search-pupil', searchObj).then(function successCallback(response) {
+                        $scope.pupilsBlock = response.data;
+                        $scope.searchName = "";
+                    }, function errorCallback(response) {
+                        console.log('error', response.err)
+                    });
+                }
+            }
         }
     }
 });

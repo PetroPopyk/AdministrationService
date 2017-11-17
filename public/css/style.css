@@ -1,4 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css?family=Quicksand');*/
+
 .block {
     /*    background-color: #1F2739;*/
     text-align: center;
@@ -228,21 +229,62 @@ input[type=button]:disabled:hover {
 }
 
 .login-block button {
-    width: 100%;
-    height: 40px;
-    background: #ff656c;
+    width: 75px;
+    height: 75px;
+    background: #58ea00;
     box-sizing: border-box;
-    border-radius: 5px;
+    border-radius: 50%;
     color: #fff;
     font-weight: bold;
     font-size: 14px;
     outline: none;
     cursor: pointer;
     border: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.login-block button:before,
+.login-block button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    border: 50%;
+    border: 1px solid #58ea00;
+    left: -15px;
+    bottom: -15px;
+    top: -15px;
+    right: -15px;
+    border-radius: 50%;
+    animation: anim 1.5s linear infinite;
+    opacity: 0;
+    backface-visibility: hidden;
+}
+.login-block button:after{
+    animation-delay: 0.5s;
+}
+@keyframes anim {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
 }
 
 .login-block button:hover {
     background: #ff7b81;
+}
+.login-block button:hover:before,
+.login-block button:hover:after{
+    border: 1px solid #ff7b81;
 }
 
 #logInfo {
@@ -273,7 +315,8 @@ input[type=button]:disabled:hover {
     height: 100%;
     width: 100%;
 }
-h2{
+
+h2 {
     color: black;
     text-shadow: 1px 1px 50px white;
 }

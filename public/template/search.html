@@ -1,0 +1,15 @@
+<div ng-show='searchStatus'>
+<button ng-click="closeSearch()">Close</button>
+<input type="text" ng-model="searchName">
+<button ng-click='searchStudent()'>Search</button>
+<div>
+    <table>
+        <tr ng-repeat="a in pupilsBlock track by $index">
+            <td>{{a.name}}</td>
+            <td>{{a.sname}}</td>
+        </tr>
+    </table>
+</div>
+</div>
+
+
